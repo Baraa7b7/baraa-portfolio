@@ -1,0 +1,43 @@
+:root {
+  /* Section backgrounds */
+  --bg-entry:    #1A0F00;
+  --bg-hero:     #0A0A0F;
+  --bg-about:    #0D0805;
+  --bg-work:     #050810;
+  --bg-clients:  #0F0F12;
+  --bg-contact:  #120A00;
+
+  /* Accents */
+  --accent-gold: #C8A05A;
+  --accent-warm: #A07040;
+  --accent-cool: #4A6080;
+
+  /* Text */
+  --text-primary:   #F0EDE8;
+  --text-secondary: #8A8A9A;
+
+  /* Type scale */
+  --size-display:  clamp(52px, 8vw, 120px);
+  --size-heading:  clamp(32px, 4vw, 56px);
+  --size-sub:      clamp(18px, 2vw, 26px);
+  --size-mono-sm:  11px;
+  --size-mono-md:  13px;
+  --size-mono-lg:  15px;
+
+  /* Letter spacing */
+  --track-display: 0.15em;
+  --track-heading: 0.10em;
+  --track-mono:    0.08em;
+
+  /* Spacing */
+  --gutter:      clamp(24px, 6vw, 120px);
+  --chapter-gap: clamp(80px, 12vw, 160px);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Transition */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

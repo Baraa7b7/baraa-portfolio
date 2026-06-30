@@ -1,0 +1,204 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────────────────────────── */
+html, body {
+  background: var(--bg-entry);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+
+.mono-body {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-lg);
+  letter-spacing: var(--track-mono);
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-sm);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Section 01 — Entry (Cold Open)
+   ───────────────────────────────────────────────────────────────────────── */
+.entry {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Smoke — thin, drifting wisps motivated by the headlight */
+.entry__smoke {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s var(--ease-out);
+}
+
+.entry.is-lit .entry__smoke {
+  opacity: 0.35;
+}
+
+.smoke-wisp {
+  position: absolute;
+  top: 30%;
+  width: 60vw;
+  height: 40vh;
+  background: radial-gradient(ellipse at center, rgba(240, 237, 232, 0.18) 0%, rgba(240, 237, 232, 0) 70%);
+  filter: blur(40px);
+  animation: drift 18s linear infinite;
+}
+
+.smoke-wisp--1 { left: -20%; top: 20%; animation-duration: 22s; }
+.smoke-wisp--2 { left: 10%;  top: 45%; animation-duration: 28s; animation-delay: -6s; }
+.smoke-wisp--3 { left: 40%;  top: 30%; animation-duration: 25s; animation-delay: -12s; }
+
+@keyframes drift {
+  0%   { transform: translateX(0) translateY(0); }
+  50%  { transform: translateX(8vw) translateY(-2vh); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* Headlight sweep — single pass, left to right */
+.entry__headlight {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    rgba(200, 160, 90, 0) 0%,
+    rgba(240, 237, 232, 0.45) 45%,
+    rgba(240, 237, 232, 0.08) 60%,
+    rgba(200, 160, 90, 0) 100%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  transform: translateX(0);
+  opacity: 0;
+}
+
+.entry.is-sweeping .entry__headlight {
+  opacity: 1;
+  animation: sweep 2.4s var(--ease-out) forwards;
+}
+
+@keyframes sweep {
+  0%   { transform: translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(330vw); opacity: 0; }
+}
+
+/* Name + tagline */
+.entry__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--gutter);
+}
+
+.entry__name {
+  font-size: var(--size-display);
+  letter-spacing: var(--track-display);
+  line-height: 0.95;
+  color: var(--text-primary);
+  opacity: 0;
+  text-transform: uppercase;
+}
+
+.entry__name-en {
+  display: inline-block;
+}
+
+.entry.is-named .entry__name {
+  animation: nameReveal 1.6s var(--ease-out) forwards;
+}
+
+@keyframes nameReveal {
+  from { opacity: 0; filter: brightness(0.3); }
+  to   { opacity: 0.92; filter: brightness(1); }
+}
+
+.entry__tagline {
+  margin-top: clamp(16px, 2vw, 28px);
+  color: var(--accent-gold);
+  opacity: 0;
+}
+
+.entry.is-tagline .entry__tagline {
+  animation: fadeUp 1.2s var(--ease-out) forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll cue */
+.entry__scroll-cue {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 48px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  opacity: 0;
+  z-index: 2;
+}
+
+.entry.is-unlocked .entry__scroll-cue {
+  animation: cuePulse 1.8s var(--ease-out) 1;
+  opacity: 1;
+}
+
+.entry__scroll-arrow {
+  font-size: 18px;
+  animation: arrowPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes cuePulse {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+
+/* Reduced motion — keep states static and visible, skip animation */
+@media (prefers-reduced-motion: reduce) {
+  .entry__smoke,
+  .entry__headlight,
+  .entry__name,
+  .entry__tagline,
+  .entry__scroll-cue,
+  .entry__scroll-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+  .entry__smoke   { opacity: 0.2; }
+  .entry__headlight { display: none; }
+  .entry__name     { opacity: 0.92; }
+  .entry__tagline  { opacity: 1; }
+  .entry__scroll-cue { opacity: 1; }
+}
