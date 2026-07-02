@@ -13,38 +13,120 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/section-1-intro.css">
+  <link rel="stylesheet" href="css/section-2-about.css">
+  <link rel="stylesheet" href="css/section-3-work.css">
+  <link rel="stylesheet" href="css/section-4-clients.css">
+  <link rel="stylesheet" href="css/section-5-contact.css">
 </head>
 <body>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       SECTION 01 — ENTRY (COLD OPEN)
-       Scroll locked until sequence completes.
+       SECTION 01 — INTRO (Black → Lamp on → Shake → Stabilize)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="entry" class="entry" aria-label="مقدمة">
-
-    <div class="entry__smoke" aria-hidden="true">
-      <span class="smoke-wisp smoke-wisp--1"></span>
-      <span class="smoke-wisp smoke-wisp--2"></span>
-      <span class="smoke-wisp smoke-wisp--3"></span>
+  <section id="intro" aria-label="مقدمة">
+    <div class="intro-black" aria-hidden="true"></div>
+    <div class="intro-frame" aria-hidden="true">
+      <img
+        class="intro-img"
+        src="images/intro/intro-bg.webp"
+        alt="براء عبدالوهاب — استشاري تقني ميداني"
+        draggable="false"
+      >
     </div>
-
-    <div class="entry__headlight" aria-hidden="true" id="headlight"></div>
-
-    <div class="entry__content">
-      <h1 class="entry__name display" id="entryName" aria-label="براء عبدالوهاب">
-        <span class="entry__name-en">BARAA ABDULWAHAB</span>
-      </h1>
-      <p class="entry__tagline mono-body" id="entryTagline">بين الثبات والحركة — القصة</p>
-    </div>
-
-    <button class="entry__scroll-cue mono-label" id="scrollCue" aria-label="مرر للأسفل للمتابعة">
-      <span class="entry__scroll-arrow" aria-hidden="true">↓</span>
-    </button>
-
   </section>
 
-  <!-- Remaining sections (Hero, About, Work, Clients, Contact) built after Section 01 approval -->
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 02 — ABOUT (Magic Hour. Text + Portrait)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="about" aria-label="عن براء">
+    <div class="about-inner">
 
-  <script src="js/main.js" type="module"></script>
+      <div class="about-text">
+        <div class="about-label">استشاري تقني ميداني</div>
+        <h2 class="about-heading">براء عبدالوهاب</h2>
+        <p class="about-body">
+          أعمل في قلب الإنتاج — حيث تلتقي الكاميرا باللحظة.
+          متخصص في أنظمة تثبيت الكاميرا DJI Ronin وARRI Trinity،
+          واستشاري تقني ميداني في المشاريع التلفزيونية الكبرى والإعلانات التجارية.
+        </p>
+        <div class="about-credits">
+          <div class="about-credit-item">Arabs Got Talent S7 — MBC</div>
+          <div class="about-credit-item">Boulevard Al-Mawaheb — MBC</div>
+          <div class="about-credit-item">Netflix · Pepsi · Toyota · Maserati</div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-portrait-wrap">
+          <img
+            class="about-portrait"
+            src="images/equipment/ARRI_Trinity.webp"
+            alt="براء عبدالوهاب مع معدات ARRI Trinity"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 03 — WORK (Blue Hour. Project cards)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="work" aria-label="الأعمال">
+    <div class="work-inner">
+      <div class="work-header">
+        <div class="work-section-label">الأعمال</div>
+        <h2 class="work-section-title">Selected Work</h2>
+      </div>
+      <div class="work-grid" role="list">
+        <!-- Cards injected by work.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 04 — CLIENTS (Overcast. Logo grid)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="clients" aria-label="العملاء">
+    <div class="clients-inner">
+      <div class="clients-header">
+        <div class="clients-label">عملاء وشركاء</div>
+      </div>
+      <div class="clients-grid" role="list">
+        <!-- Logos injected by clients.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 05 — CONTACT (Deep Tungsten. Single lamp glow)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="contact" aria-label="تواصل">
+    <div class="contact-inner">
+      <h2 class="contact-tagline">الكادر التالي — لك</h2>
+      <div class="contact-links">
+        <!-- Links injected by contact.js -->
+      </div>
+      <div class="contact-horizon" aria-hidden="true"></div>
+      <div class="contact-timecode" aria-hidden="true">00:00:00:00</div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initIntro }   from './js/sections/intro.js';
+    import { initAbout }   from './js/sections/about.js';
+    import { initWork }    from './js/sections/work.js';
+    import { initClients } from './js/sections/clients.js';
+    import { initContact } from './js/sections/contact.js';
+
+    initIntro();
+    initAbout();
+    initWork();
+    initClients();
+    initContact();
+  </script>
 </body>
 </html>

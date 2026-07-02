@@ -1,0 +1,82 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Section 01 — Intro
+   Black → Lamp-on → Push-in → Shake → Breathing still
+   All rules scoped to #intro. Nothing leaks out.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Section container ── */
+#intro {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Hard-black overlay ── */
+#intro .intro-black {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 10;
+  pointer-events: none;
+}
+#intro .intro-black.is-lifted {
+  display: none;
+}
+
+/* ── Aspect-ratio frame ──
+   Covers viewport at 2816:1536. Centered via top/left + translate.
+   JS writes inline transform during push-in and shake (overrides CSS base).
+   On breathing: inline style cleared, CSS animation takes over fully. ── */
+#intro .intro-frame {
+  position: absolute;
+  aspect-ratio: 2816 / 1536;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  will-change: transform, filter;
+}
+
+/* ── Lamp-on: brightness overshoot → dip → settle ── */
+@keyframes lamp-on {
+  0%   { filter: brightness(0);    }
+  55%  { filter: brightness(1.38); }
+  75%  { filter: brightness(0.88); }
+  100% { filter: brightness(1);    }
+}
+#intro .intro-frame.is-lamp-on {
+  animation: lamp-on 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Breathing: JS rAF sin-wave loop owns the transform.
+   This class only ensures filter is clean once shake clears. ── */
+#intro .intro-frame.is-breathing {
+  filter: brightness(1);
+}
+
+/* ── Background image ── */
+#intro .intro-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Reduced motion — show image still, no animation ── */
+@media (prefers-reduced-motion: reduce) {
+  #intro .intro-black { display: none; }
+  #intro .intro-frame {
+    animation: none !important;
+    filter: brightness(1) !important;
+    transform: translate(-50%, -50%) scale(1.03) !important;
+  }
+}

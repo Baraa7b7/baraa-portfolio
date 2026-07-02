@@ -1,0 +1,203 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Section 02 — About
+   Magic Hour warmth. Text left, portrait right. Differential parallax.
+   All rules scoped to #about. Nothing leaks out.
+   ───────────────────────────────────────────────────────────────────────── */
+
+#about {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-about);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: clamp(80px, 12vw, 160px) var(--gutter);
+}
+
+/* Edge warmth bleed */
+#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at -10% 50%, rgba(160, 112, 64, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 110% 30%, rgba(200, 160, 90, 0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Layout ── */
+#about .about-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Left: Text column ── */
+#about .about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#about .about-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-sm);
+  letter-spacing: var(--track-mono);
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+#about .about-heading {
+  font-family: var(--font-display);
+  font-size: var(--size-heading);
+  font-weight: 300;
+  letter-spacing: var(--track-heading);
+  color: var(--text-primary);
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-out) 0.1s, transform 0.8s var(--ease-out) 0.1s;
+}
+
+#about .about-body {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 42ch;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-out) 0.2s, transform 0.8s var(--ease-out) 0.2s;
+}
+
+#about .about-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out) 0.32s, transform 0.8s var(--ease-out) 0.32s;
+}
+
+#about .about-credit-item {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-sm);
+  color: var(--text-secondary);
+  letter-spacing: var(--track-mono);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#about .about-credit-item::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* ── Right: Portrait column ── */
+#about .about-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 1s var(--ease-out) 0.15s, transform 1s var(--ease-out) 0.15s;
+}
+
+#about .about-portrait-wrap {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+}
+
+#about .about-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  /* Warm duotone tint overlay via mix-blend */
+  filter: brightness(0.88) sepia(0.18) saturate(1.1);
+}
+
+/* Shadow lamp effect beneath portrait */
+#about .about-portrait-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -32px;
+  left: 10%;
+  right: 10%;
+  height: 60px;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(200, 160, 90, 0.22) 0%, transparent 100%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Thin frame accent */
+#about .about-portrait-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(200, 160, 90, 0.12);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Visible state (triggered by IntersectionObserver) ── */
+#about.is-visible .about-label,
+#about.is-visible .about-heading,
+#about.is-visible .about-body,
+#about.is-visible .about-credits,
+#about.is-visible .about-visual {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #about .about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  #about .about-visual {
+    order: -1;
+  }
+
+  #about .about-portrait-wrap {
+    width: min(100%, 300px);
+    aspect-ratio: 3 / 4;
+    margin: 0 auto;
+  }
+
+  #about .about-body {
+    max-width: 100%;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  #about .about-label,
+  #about .about-heading,
+  #about .about-body,
+  #about .about-credits,
+  #about .about-visual {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
