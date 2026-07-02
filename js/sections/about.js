@@ -1,12 +1,8 @@
-import { IDENTITY } from '../content.js';
-
 export function initAbout() {
   const section = document.getElementById('about');
   if (!section) return;
 
-  // Populate content from data
-  const heading = section.querySelector('.about-heading');
-  if (heading) heading.textContent = IDENTITY.role;
+  // Heading/body text is owned by i18n via data-i18n attributes
 
   // IntersectionObserver — trigger once when 30% visible
   const io = new IntersectionObserver(

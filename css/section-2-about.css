@@ -59,10 +59,11 @@
 #about .about-heading {
   font-family: var(--font-display);
   font-size: var(--size-heading);
-  font-weight: 300;
+  font-weight: var(--weight-heading);
   letter-spacing: var(--track-heading);
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: var(--lh-heading);
+  white-space: pre-line;
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.8s var(--ease-out) 0.1s, transform 0.8s var(--ease-out) 0.1s;
@@ -70,8 +71,8 @@
 
 #about .about-body {
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.4vw, 17px);
-  line-height: 1.75;
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
   color: var(--text-secondary);
   max-width: 42ch;
   opacity: 0;

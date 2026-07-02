@@ -1,82 +1,89 @@
-export const IDENTITY = {
-  nameAr: 'براء عبدالوهاب',
-  nameEn: 'BARAA ABDULWAHAB',
-  tagline: 'بين الثبات والحركة — القصة',
-  role: 'استشاري تقني ميداني\nومتخصص تثبيت الكاميرا',
-  roleEn: 'On-Set Technical Consultant\n& Camera Stabilization Specialist',
-  bio: 'أعمل في قلب الإنتاج — حيث تلتقي الكاميرا بالحظة. متخصص في تثبيت الكاميرا بأنظمة DJI Ronin وARRI Trinity، واستشاري تقني ميداني في المشاريع الكبرى.',
-  bioEn: 'Working at the heart of production — where camera meets moment. Specializing in DJI Ronin and ARRI Trinity stabilization systems, on-set technical consulting for major productions.',
-  equipment: ['DJI Ronin', 'ARRI Trinity'],
-};
+// ─────────────────────────────────────────────────────────────────────────────
+// js/content.js — Data. All UI copy lives in js/i18n.js; project/client data
+// here carries per-locale fields where the value differs between languages.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const CONTACT = {
-  email: 'kailua352@gmail.com',
-  whatsapp: 'https://wa.me/',
-  imdb: 'https://www.imdb.com/',
+  email: 'baraaabdulwahab1@gmail.com',
+  whatsapp: 'https://wa.me/966505154962',
+  whatsappDisplay: '+966 50 515 4962',
+  instagram: 'https://www.instagram.com/baraa_abdul_wahab/',
+  instagramHandle: '@baraa_abdul_wahab',
+};
+
+const ROLE = {
+  stabilization: {
+    ar: 'متخصص تثبيت الكاميرا',
+    en: 'Camera Stabilization Specialist',
+  },
+  consultant: {
+    ar: 'استشاري تقني ميداني',
+    en: 'On-Set Technical Consultant',
+  },
 };
 
 export const WORKS = [
   {
     id: 'agt-s7',
-    title: 'Arabs Got Talent S7',
+    title: { ar: 'عرب غوت تالنت — الموسم السابع', en: 'Arabs Got Talent S7' },
     year: '2022',
-    role: 'Camera Stabilization Specialist',
+    role: ROLE.stabilization,
     client: 'MBC',
     image: 'images/projects/agt-s7-01.jpg',
   },
   {
     id: 'boulevard',
-    title: 'Boulevard Al-Mawaheb',
+    title: { ar: 'بوليفارد المواهب', en: 'Boulevard Al-Mawaheb' },
     year: '2023',
-    role: 'On-Set Technical Consultant',
+    role: ROLE.consultant,
     client: 'MBC',
     image: 'images/projects/trad-01.jpeg',
   },
   {
     id: 'alsaa-kam',
-    title: 'Al-Saa Kam',
+    title: { ar: 'الساعة كم', en: 'Al-Saa Kam' },
     year: '2023',
-    role: 'Camera Stabilization Specialist',
+    role: ROLE.stabilization,
     client: 'Commercial',
     image: 'images/projects/alsaa-kam-01.jpg',
   },
   {
     id: 'rouge',
-    title: 'Rouge',
+    title: { ar: 'روج', en: 'Rouge' },
     year: '2023',
-    role: 'On-Set Technical Consultant',
+    role: ROLE.consultant,
     client: 'Commercial',
     image: 'images/projects/rouge-01.jpg',
   },
   {
     id: 'ardh-alamjad',
-    title: 'Ardh Al-Amjad',
+    title: { ar: 'أرض الأمجاد', en: 'Ardh Al-Amjad' },
     year: '2024',
-    role: 'Camera Stabilization Specialist',
+    role: ROLE.stabilization,
     client: 'Commercial',
     image: 'images/projects/ardh-alamjad-01.jpg',
   },
   {
     id: 'dakar-rally',
-    title: 'Dakar Rally',
+    title: { ar: 'رالي داكار', en: 'Dakar Rally' },
     year: '2024',
-    role: 'On-Set Technical Consultant',
+    role: ROLE.consultant,
     client: 'Commercial',
     image: 'images/projects/dakar-rally-01.jpg',
   },
   {
     id: 'alzarfa',
-    title: 'Al-Zarfa',
+    title: { ar: 'الزرفة', en: 'Al-Zarfa' },
     year: '2024',
-    role: 'Camera Stabilization Specialist',
+    role: ROLE.stabilization,
     client: 'Commercial',
     image: 'images/projects/alzarfa-01.jpg',
   },
   {
     id: 'mira',
-    title: 'Mira Mira Mira',
+    title: { ar: 'ميرا ميرا ميرا', en: 'Mira Mira Mira' },
     year: '2024',
-    role: 'On-Set Technical Consultant',
+    role: ROLE.consultant,
     client: 'Commercial',
     image: 'images/projects/mira-mira-mira-01.jpg',
   },

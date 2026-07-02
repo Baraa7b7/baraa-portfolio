@@ -8,11 +8,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@400;500;700&display=swap">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/lang-toggle.css">
   <link rel="stylesheet" href="css/section-1-intro.css">
   <link rel="stylesheet" href="css/section-2-about.css">
   <link rel="stylesheet" href="css/section-3-work.css">
@@ -22,15 +23,25 @@
 <body>
 
   <!-- ═══════════════════════════════════════════════════════════════════
+       LANGUAGE TOGGLE — fixed, always accessible
+       ═══════════════════════════════════════════════════════════════════ -->
+  <nav class="lang-toggle" aria-label="تبديل اللغة">
+    <button type="button" data-lang="ar" lang="ar" aria-pressed="true">AR</button>
+    <span class="lang-toggle-divider" aria-hidden="true">|</span>
+    <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 01 — INTRO (Black → Lamp on → Shake → Stabilize)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="intro" aria-label="مقدمة">
+  <section id="intro" aria-label="مقدمة" data-i18n-attr="aria-label:intro.ariaLabel">
     <div class="intro-black" aria-hidden="true"></div>
     <div class="intro-frame" aria-hidden="true">
       <img
         class="intro-img"
         src="images/intro/intro-bg.webp"
         alt="براء عبدالوهاب — استشاري تقني ميداني"
+        data-i18n-attr="alt:intro.imgAlt"
         draggable="false"
       >
     </div>
@@ -39,21 +50,22 @@
   <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 02 — ABOUT (Magic Hour. Text + Portrait)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="about" aria-label="عن براء">
+  <section id="about" aria-label="عن براء" data-i18n-attr="aria-label:about.ariaLabel">
     <div class="about-inner">
 
       <div class="about-text">
-        <div class="about-label">استشاري تقني ميداني</div>
-        <h2 class="about-heading">براء عبدالوهاب</h2>
-        <p class="about-body">
+        <div class="about-label" data-i18n="about.label">نبذة</div>
+        <h2 class="about-heading" data-i18n="about.heading">استشاري تقني ميداني
+ومتخصص تثبيت الكاميرا</h2>
+        <p class="about-body" data-i18n="about.body">
           أعمل في قلب الإنتاج — حيث تلتقي الكاميرا باللحظة.
           متخصص في أنظمة تثبيت الكاميرا DJI Ronin وARRI Trinity،
           واستشاري تقني ميداني في المشاريع التلفزيونية الكبرى والإعلانات التجارية.
         </p>
         <div class="about-credits">
-          <div class="about-credit-item">Arabs Got Talent S7 — MBC</div>
-          <div class="about-credit-item">Boulevard Al-Mawaheb — MBC</div>
-          <div class="about-credit-item">Netflix · Pepsi · Toyota · Maserati</div>
+          <div class="about-credit-item" data-i18n="about.credit1">Arabs Got Talent S7 — MBC</div>
+          <div class="about-credit-item" data-i18n="about.credit2">Boulevard Al-Mawaheb — MBC</div>
+          <div class="about-credit-item" data-i18n="about.credit3">Netflix · Pepsi · Toyota · Maserati</div>
         </div>
       </div>
 
@@ -63,6 +75,7 @@
             class="about-portrait"
             src="images/equipment/ARRI_Trinity.webp"
             alt="براء عبدالوهاب مع معدات ARRI Trinity"
+            data-i18n-attr="alt:about.portraitAlt"
             loading="lazy"
             decoding="async"
           >
@@ -75,11 +88,11 @@
   <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 03 — WORK (Blue Hour. Project cards)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="work" aria-label="الأعمال">
+  <section id="work" aria-label="الأعمال" data-i18n-attr="aria-label:work.ariaLabel">
     <div class="work-inner">
       <div class="work-header">
-        <div class="work-section-label">الأعمال</div>
-        <h2 class="work-section-title">Selected Work</h2>
+        <div class="work-section-label" data-i18n="work.label">الأعمال</div>
+        <h2 class="work-section-title" data-i18n="work.title">أعمال مختارة</h2>
       </div>
       <div class="work-grid" role="list">
         <!-- Cards injected by work.js -->
@@ -90,10 +103,10 @@
   <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 04 — CLIENTS (Overcast. Logo grid)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="clients" aria-label="العملاء">
+  <section id="clients" aria-label="العملاء" data-i18n-attr="aria-label:clients.ariaLabel">
     <div class="clients-inner">
       <div class="clients-header">
-        <div class="clients-label">عملاء وشركاء</div>
+        <div class="clients-label" data-i18n="clients.label">عملاء وشركاء</div>
       </div>
       <div class="clients-grid" role="list">
         <!-- Logos injected by clients.js -->
@@ -104,9 +117,9 @@
   <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 05 — CONTACT (Deep Tungsten. Single lamp glow)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="contact" aria-label="تواصل">
+  <section id="contact" aria-label="تواصل" data-i18n-attr="aria-label:contact.ariaLabel">
     <div class="contact-inner">
-      <h2 class="contact-tagline">الكادر التالي — لك</h2>
+      <h2 class="contact-tagline" data-i18n="contact.tagline">الكادر التالي — لك</h2>
       <div class="contact-links">
         <!-- Links injected by contact.js -->
       </div>
@@ -116,12 +129,16 @@
   </section>
 
   <script type="module">
-    import { initIntro }   from './js/sections/intro.js';
-    import { initAbout }   from './js/sections/about.js';
-    import { initWork }    from './js/sections/work.js';
-    import { initClients } from './js/sections/clients.js';
-    import { initContact } from './js/sections/contact.js';
+    import { applyStatic }    from './js/i18n.js';
+    import { initLangToggle } from './js/sections/lang-toggle.js';
+    import { initIntro }      from './js/sections/intro.js';
+    import { initAbout }      from './js/sections/about.js';
+    import { initWork }       from './js/sections/work.js';
+    import { initClients }    from './js/sections/clients.js';
+    import { initContact }    from './js/sections/contact.js';
 
+    applyStatic();
+    initLangToggle();
     initIntro();
     initAbout();
     initWork();

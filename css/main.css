@@ -5,12 +5,16 @@ html, body {
   background: var(--bg-entry);
   color: var(--text-primary);
   font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  line-height: var(--lh-body);
   overflow-x: hidden;
 }
 
 .display {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: var(--weight-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
 }
 
 .mono-body {
