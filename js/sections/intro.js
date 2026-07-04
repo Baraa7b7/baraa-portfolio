@@ -10,6 +10,15 @@
 //   4.2s    intro:complete dispatched
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { getLocale, onLocaleChange } from '../i18n.js';
+
+// Locale-specific intro backgrounds; both are preloaded from index.html so
+// the swap during a language switch never shows a loading flash.
+const INTRO_IMAGES = {
+  ar: 'images/intro/intro-bg-ar.webp',
+  en: 'images/intro/intro-bg-en.webp',
+};
+
 // ── Easing functions ──────────────────────────────────────────────────────
 
 function easeOutQuart(t) {
@@ -166,6 +175,18 @@ export function initIntro() {
   const black = section.querySelector('.intro-black');
   const frame = section.querySelector('.intro-frame');
   if (!black || !frame) return;
+
+  // Locale-driven background. The swap fires at the midpoint of the language
+  // toggle's cross-fade (lang-toggle.css fades .intro-img alongside the text),
+  // so the new image appears with the same subtle dissolve.
+  const img = section.querySelector('.intro-img');
+  if (img) {
+    const src = INTRO_IMAGES[getLocale()];
+    if (src && img.getAttribute('src') !== src) img.setAttribute('src', src);
+    onLocaleChange((locale) => {
+      if (INTRO_IMAGES[locale]) img.setAttribute('src', INTRO_IMAGES[locale]);
+    });
+  }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     black.classList.add('is-lifted');

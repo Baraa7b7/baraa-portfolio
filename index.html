@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@400;500;700&display=swap">
 
+  <!-- Both intro locale images preloaded so the language switch never flashes -->
+  <link rel="preload" href="images/intro/intro-bg-ar.webp" as="image" type="image/webp">
+  <link rel="preload" href="images/intro/intro-bg-en.webp" as="image" type="image/webp">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
@@ -39,7 +43,7 @@
     <div class="intro-frame" aria-hidden="true">
       <img
         class="intro-img"
-        src="images/intro/intro-bg.webp"
+        src="images/intro/intro-bg-ar.webp"
         alt="براء عبدالوهاب — استشاري تقني ميداني"
         data-i18n-attr="alt:intro.imgAlt"
         draggable="false"

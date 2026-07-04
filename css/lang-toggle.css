@@ -66,24 +66,28 @@
 
 /* ── Cross-fade of section content during a language switch ──
    Cross-cutting by nature, so it lives here rather than in the per-section
-   files. #intro is image-only and deliberately excluded. */
+   files. The intro image joins the fade: intro.js swaps its src at the
+   fade midpoint so each locale shows its own background. */
+#intro .intro-img,
 #about .about-inner,
-#work .work-inner,
+#work .work-sticky,
 #clients .clients-inner,
 #contact .contact-inner {
   transition: opacity 0.24s ease;
 }
 
+body.is-lang-switching #intro .intro-img,
 body.is-lang-switching #about .about-inner,
-body.is-lang-switching #work .work-inner,
+body.is-lang-switching #work .work-sticky,
 body.is-lang-switching #clients .clients-inner,
 body.is-lang-switching #contact .contact-inner {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #intro .intro-img,
   #about .about-inner,
-  #work .work-inner,
+  #work .work-sticky,
   #clients .clients-inner,
   #contact .contact-inner {
     transition: none;
