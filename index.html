@@ -89,13 +89,19 @@
        SECTION 03 — WORK (Blue Hour. Project cards)
        ═══════════════════════════════════════════════════════════════════ -->
   <section id="work" aria-label="الأعمال" data-i18n-attr="aria-label:work.ariaLabel">
-    <div class="work-inner">
+    <div class="work-sticky">
       <div class="work-header">
         <div class="work-section-label" data-i18n="work.label">الأعمال</div>
         <h2 class="work-section-title" data-i18n="work.title">أعمال مختارة</h2>
       </div>
-      <div class="work-grid" role="list">
-        <!-- Cards injected by work.js -->
+      <div class="work-track-viewport">
+        <div class="work-track" role="list">
+          <!-- Cards injected by work.js -->
+        </div>
+      </div>
+      <div class="work-progress" aria-hidden="true">
+        <span class="work-progress-counter">01 / 08</span>
+        <span class="work-progress-bar"><span class="work-progress-fill"></span></span>
       </div>
     </div>
   </section>

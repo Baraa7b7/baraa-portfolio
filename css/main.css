@@ -7,7 +7,9 @@ html, body {
   font-family: var(--font-body);
   font-weight: var(--weight-body);
   line-height: var(--lh-body);
-  overflow-x: hidden;
+  /* clip, not hidden: hidden creates a scroll container on body and
+     breaks position: sticky (Work section pinning) */
+  overflow-x: clip;
 }
 
 .display {

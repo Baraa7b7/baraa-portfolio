@@ -1,19 +1,32 @@
 /* ─────────────────────────────────────────────────────────────────────────
    Section 03 — Work
-   Blue Hour. Project cards. Dark name → hover reveals image.
+   Blue Hour. Pinned horizontal gallery: the section pins to the viewport
+   and vertical scroll dollies the cards sideways, following reading
+   direction (AR: right→left, EN: left→right). Dark name → hover reveals.
+   Mobile / reduced-motion: native swipeable carousel with scroll-snap.
    All rules scoped to #work. Nothing leaks out.
    ───────────────────────────────────────────────────────────────────────── */
 
 #work {
   position: relative;
-  min-height: 100vh;
   background: var(--bg-work);
-  padding: clamp(80px, 12vw, 160px) var(--gutter);
+  /* Pinned mode: work.js sets height = 100vh + horizontal travel distance */
+}
+
+#work .work-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 5vh, 56px);
   overflow: hidden;
 }
 
 /* Cool blue tint from edges */
-#work::before {
+#work .work-sticky::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -23,11 +36,11 @@
   pointer-events: none;
 }
 
-#work .work-inner {
+#work .work-header,
+#work .work-track-viewport,
+#work .work-progress {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 /* ── Section header ── */
@@ -35,8 +48,8 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: clamp(48px, 7vw, 96px);
   gap: 24px;
+  padding: 0 var(--gutter);
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
@@ -59,16 +72,22 @@
   line-height: var(--lh-heading);
 }
 
-/* ── Project grid ── */
-#work .work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* ── Horizontal track ── */
+#work .work-track {
+  display: flex;
+  width: max-content;
   gap: clamp(2px, 0.5vw, 4px);
+  padding-inline: var(--gutter);
+  will-change: transform;
 }
 
-/* ── Individual project card ── */
+/* ── Individual project card ──
+   Height-driven sizing keeps the 16/10 frame inside any viewport while
+   leaving a peek of the next card at the edge. */
 #work .work-card {
   position: relative;
+  flex: none;
+  height: min(52vh, 460px);
   aspect-ratio: 16 / 10;
   overflow: hidden;
   cursor: pointer;
@@ -80,7 +99,6 @@
     transform 0.7s var(--ease-out);
 }
 
-/* Stagger via inline --i custom prop set by JS */
 #work .work-card:nth-child(1) { transition-delay: 0.0s, 0.0s; }
 #work .work-card:nth-child(2) { transition-delay: 0.08s, 0.08s; }
 #work .work-card:nth-child(3) { transition-delay: 0.16s, 0.16s; }
@@ -182,6 +200,37 @@
   outline-offset: 2px;
 }
 
+/* ── Progress indicator — position within the gallery ── */
+#work .work-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 var(--gutter);
+}
+
+#work .work-progress-counter {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-sm);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  direction: ltr;
+}
+
+#work .work-progress-bar {
+  position: relative;
+  width: min(240px, 30vw);
+  height: 1px;
+  background: rgba(74, 96, 128, 0.25);
+}
+
+#work .work-progress-fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 0%;
+  background: var(--accent-cool);
+}
+
 /* ── Visible state ── */
 #work.is-visible .work-header {
   opacity: 1;
@@ -193,14 +242,40 @@
   transform: translateY(0);
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  #work .work-grid {
-    grid-template-columns: 1fr;
-    gap: 2px;
+/* ── Native carousel mode: touch devices & reduced motion ──
+   No pinning — the track becomes a swipeable scroll-snap carousel.
+   work.js clears the inline section height and reads scrollLeft instead. */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  #work .work-sticky {
+    position: static;
+    height: auto;
+    padding: clamp(80px, 12vw, 160px) 0;
+    overflow: visible;
+    gap: clamp(28px, 6vw, 48px);
+  }
+
+  #work .work-track-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #work .work-track {
+    transform: none !important;
+    will-change: auto;
   }
 
   #work .work-card {
+    scroll-snap-align: start;
+  }
+}
+
+/* ── Mobile sizing ── */
+@media (max-width: 768px) {
+  #work .work-card {
+    height: auto;
+    width: min(82vw, 420px);
     aspect-ratio: 4 / 3;
   }
 
@@ -211,6 +286,15 @@
   #work .work-header {
     flex-direction: column;
     gap: 8px;
+  }
+
+  /* Progress indicator replaces the scrollbar */
+  #work .work-track-viewport {
+    scrollbar-width: none;
+  }
+
+  #work .work-track-viewport::-webkit-scrollbar {
+    display: none;
   }
 }
 
