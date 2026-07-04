@@ -107,6 +107,7 @@
 #work .work-card:nth-child(6) { transition-delay: 0.40s, 0.40s; }
 #work .work-card:nth-child(7) { transition-delay: 0.48s, 0.48s; }
 #work .work-card:nth-child(8) { transition-delay: 0.56s, 0.56s; }
+#work .work-card:nth-child(9) { transition-delay: 0.64s, 0.64s; }
 
 /* Image: initially dim, revealed on hover */
 #work .work-card-img {

@@ -32,12 +32,20 @@ export const WORKS = [
     image: 'images/projects/agt-s7-01.jpg',
   },
   {
+    id: 'trad',
+    title: { ar: 'طراد', en: 'Trad' },
+    year: '2022',
+    role: ROLE.stabilization,
+    client: 'MBC',
+    image: 'images/projects/trad-01.jpeg',
+  },
+  {
     id: 'boulevard',
     title: { ar: 'بوليفارد المواهب', en: 'Boulevard Al-Mawaheb' },
     year: '2023',
     role: ROLE.consultant,
     client: 'MBC',
-    image: 'images/projects/trad-01.jpeg',
+    image: 'images/projects/mawaheb-01.jpeg',
   },
   {
     id: 'alsaa-kam',
