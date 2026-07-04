@@ -39,6 +39,28 @@ export function initLangToggle() {
       }
 
       switching = true;
+
+      if (window.gsap) {
+        gsap.to(document.body, {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power1.out',
+          onComplete() {
+            setLocale(next);
+            sync();
+            if (window.ScrollTrigger) ScrollTrigger.refresh();
+            gsap.to(document.body, {
+              opacity: 1,
+              duration: 0.2,
+              ease: 'power1.in',
+              onComplete() { switching = false; },
+            });
+          },
+        });
+        return;
+      }
+
+      // No-GSAP fallback: the CSS class-based cross-fade
       document.body.classList.add('is-lang-switching');
 
       setTimeout(() => {

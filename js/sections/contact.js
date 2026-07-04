@@ -14,6 +14,46 @@ export function initContact() {
 
   const linksContainer = section.querySelector('.contact-links');
   const timecode = section.querySelector('.contact-timecode');
+  const tagline = section.querySelector('.contact-tagline');
+
+  // Tagline split reveal — GSAP owns it; rebuilt on locale change because
+  // applyStatic() rewrites the textContent and destroys the split spans.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (tagline && !reduceMotion && window.gsap && window.ScrollTrigger && window.SplitType) {
+    tagline.style.transition = 'none';
+    tagline.style.opacity = '1';
+    tagline.style.transform = 'none';
+
+    let split = null;
+    let tween = null;
+
+    function buildTaglineReveal() {
+      if (tween) {
+        if (tween.scrollTrigger) tween.scrollTrigger.kill();
+        tween.kill();
+        tween = null;
+      }
+      if (split) {
+        split.revert();
+        split = null;
+      }
+      // Arabic is a connected script — per-character spans break letter
+      // joining, so the AR locale splits on words instead of chars
+      const types = document.documentElement.lang === 'ar' ? 'words' : 'chars';
+      split = new SplitType(tagline, { types });
+      tween = gsap.from(types === 'chars' ? split.chars : split.words, {
+        opacity: 0,
+        y: 12,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.02,
+        scrollTrigger: { trigger: section, start: 'top 70%', once: true },
+      });
+    }
+
+    buildTaglineReveal();
+    onLocaleChange(() => setTimeout(buildTaglineReveal, 0));
+  }
 
   // Build links from content — labels translate, values are universal data
   const items = [

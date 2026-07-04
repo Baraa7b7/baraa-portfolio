@@ -6,6 +6,17 @@
   <meta name="description" content="براء عبدالوهاب — استشاري تقني ميداني ومتخصص تثبيت الكاميرا (DJI Ronin, ARRI Trinity).">
   <title>براء عبدالوهاب — بين الثبات والحركة</title>
 
+  <!-- Favicon — inline placeholder until a real mark exists -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='45' font-family='monospace' font-size='38' fill='%23C8A05A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+
+  <!-- Social cards — default AR values; i18n.js applyStatic() keeps title/description in sync -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="براء عبدالوهاب — بين الثبات والحركة">
+  <meta property="og:description" content="براء عبدالوهاب — استشاري تقني ميداني ومتخصص تثبيت الكاميرا (DJI Ronin, ARRI Trinity).">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Baraa7b7/baraa-portfolio/main/images/intro/intro-bg-ar.webp">
+  <meta property="og:url" content="https://baraa7b7.github.io/baraa-portfolio/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@400;500;700&display=swap">
@@ -21,10 +32,18 @@
   <link rel="stylesheet" href="css/section-1-intro.css">
   <link rel="stylesheet" href="css/section-2-about.css">
   <link rel="stylesheet" href="css/section-3-work.css">
-  <link rel="stylesheet" href="css/section-4-clients.css">
-  <link rel="stylesheet" href="css/section-5-contact.css">
+  <link rel="stylesheet" href="css/section-4-numbers.css">
+  <link rel="stylesheet" href="css/section-5-clients.css">
+  <link rel="stylesheet" href="css/section-6-contact.css">
 </head>
 <body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       PRELOADER — removed after window load; intro starts after removal
+       ═══════════════════════════════════════════════════════════════════ -->
+  <div id="preloader" aria-hidden="true">
+    <span class="preloader-name">BARAA ABDULWAHAB</span>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════════════════
        LANGUAGE TOGGLE — fixed, always accessible
@@ -34,6 +53,11 @@
     <span class="lang-toggle-divider" aria-hidden="true">|</span>
     <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
   </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SCROLL DOTS — fixed section nav, dots injected from the module script
+       ═══════════════════════════════════════════════════════════════════ -->
+  <nav class="scroll-dots" aria-label="التنقل بين الأقسام"></nav>
 
   <!-- ═══════════════════════════════════════════════════════════════════
        SECTION 01 — INTRO (Black → Lamp on → Shake → Stabilize)
@@ -111,24 +135,43 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       SECTION 04 — CLIENTS (Overcast. Logo grid)
+       SECTION 04 — NUMBERS (استعراض القوة. Count-up stats)
        ═══════════════════════════════════════════════════════════════════ -->
-  <section id="clients" aria-label="العملاء" data-i18n-attr="aria-label:clients.ariaLabel">
-    <div class="clients-inner">
-      <div class="clients-header">
-        <div class="clients-label" data-i18n="clients.label">عملاء وشركاء</div>
+  <section id="numbers" aria-label="الأرقام" data-i18n-attr="aria-label:numbers.ariaLabel">
+    <div class="numbers-inner">
+      <div class="numbers-header">
+        <div class="numbers-label" data-i18n="numbers.label">٠٤ — الأرقام</div>
+        <h2 class="numbers-heading" data-i18n="numbers.heading">استعراض القوة</h2>
       </div>
-      <div class="clients-grid" role="list">
-        <!-- Logos injected by clients.js -->
+      <div class="numbers-grid">
+        <!-- Stats injected by numbers.js -->
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       SECTION 05 — CONTACT (Deep Tungsten. Single lamp glow)
+       SECTION 05 — CLIENTS (Overcast. Monochrome logo marquee)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="clients" aria-label="العملاء" data-i18n-attr="aria-label:clients.ariaLabel">
+    <div class="clients-inner">
+      <div class="clients-header">
+        <div class="clients-label" data-i18n="clients.label">٠٥ — عملاء وشركاء</div>
+        <h2 class="clients-heading" data-i18n="clients.title">ثقة تتكرر</h2>
+      </div>
+      <div class="clients-marquee">
+        <div class="clients-track">
+          <!-- Logo groups injected by clients.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       SECTION 06 — CONTACT (Deep Tungsten. Single lamp glow)
        ═══════════════════════════════════════════════════════════════════ -->
   <section id="contact" aria-label="تواصل" data-i18n-attr="aria-label:contact.ariaLabel">
     <div class="contact-inner">
+      <div class="contact-label" data-i18n="contact.label">٠٦ — تواصل</div>
       <h2 class="contact-tagline" data-i18n="contact.tagline">الكادر التالي — لك</h2>
       <div class="contact-links">
         <!-- Links injected by contact.js -->
@@ -138,22 +181,93 @@
     </div>
   </section>
 
+  <!-- Animation stack — classic scripts, guaranteed to execute before the
+       (deferred) module script below. lenis & split-type are not hosted on
+       cdnjs, hence jsDelivr for those two. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
   <script type="module">
-    import { applyStatic }    from './js/i18n.js';
+    import { applyStatic, onLocaleChange } from './js/i18n.js';
+    import { initSmooth, getLenis }        from './js/smooth.js';
     import { initLangToggle } from './js/sections/lang-toggle.js';
     import { initIntro }      from './js/sections/intro.js';
     import { initAbout }      from './js/sections/about.js';
     import { initWork }       from './js/sections/work.js';
+    import { initNumbers }    from './js/sections/numbers.js';
     import { initClients }    from './js/sections/clients.js';
     import { initContact }    from './js/sections/contact.js';
 
+    initSmooth();
     applyStatic();
     initLangToggle();
-    initIntro();
     initAbout();
     initWork();
+    initNumbers();
     initClients();
     initContact();
+
+    // ── Preloader — the intro sequence starts only after it is removed ──
+    const preloader = document.getElementById('preloader');
+
+    function releaseIntro() {
+      if (preloader) preloader.remove();
+      initIntro();
+    }
+
+    function hidePreloader() {
+      setTimeout(() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (window.gsap && preloader && !reduce) {
+          gsap.to(preloader, { opacity: 0, duration: 0.6, ease: 'power2.out', onComplete: releaseIntro });
+        } else {
+          releaseIntro();
+        }
+      }, 800);
+    }
+
+    if (document.readyState === 'complete') hidePreloader();
+    else window.addEventListener('load', hidePreloader);
+
+    // ── Scroll dots — one per top-level section ──
+    const dotsNav = document.querySelector('.scroll-dots');
+    if (dotsNav) {
+      // section[id], not body > section — ScrollTrigger's pin-spacer wraps #work
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      const dots = sections.map((sec) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'scroll-dot';
+        dot.setAttribute('aria-label', sec.getAttribute('aria-label') || sec.id);
+        dot.addEventListener('click', () => {
+          const lenis = getLenis();
+          if (lenis) lenis.scrollTo(sec, { duration: 1.2 });
+          else sec.scrollIntoView({ behavior: 'smooth' });
+        });
+        dotsNav.appendChild(dot);
+        return dot;
+      });
+
+      // aria-labels are locale-driven (applyStatic runs before the listeners)
+      onLocaleChange(() => {
+        dots.forEach((dot, i) => dot.setAttribute('aria-label', sections[i].getAttribute('aria-label') || sections[i].id));
+      });
+
+      if (window.gsap && window.ScrollTrigger) {
+        const setActive = (i) => dots.forEach((d, j) => d.classList.toggle('is-active', i === j));
+        sections.forEach((sec, i) => {
+          ScrollTrigger.create({
+            trigger: sec,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle(self) { if (self.isActive) setActive(i); },
+          });
+        });
+        setActive(0);
+      }
+    }
   </script>
 </body>
 </html>

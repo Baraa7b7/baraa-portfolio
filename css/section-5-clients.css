@@ -1,0 +1,182 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Section 05 — Clients
+   Overcast. A continuous monochrome marquee of logos — one normalized
+   height, generous spacing, faded at both edges, paused on hover.
+   Direction follows reading direction. Reduced motion: static wrapped row.
+   All rules scoped to #clients. Nothing leaks out.
+   ───────────────────────────────────────────────────────────────────────── */
+
+#clients {
+  position: relative;
+  min-height: 60vh;
+  background: var(--bg-clients);
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Subtle overcast gradient — neutral, no warmth */
+#clients::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(106, 106, 122, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#clients .clients-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ── Header — numbered overline + heading ── */
+#clients .clients-header {
+  text-align: center;
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(56px, 8vw, 96px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+#clients .clients-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono-sm);
+  letter-spacing: var(--track-mono);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+#clients .clients-heading {
+  font-family: var(--font-display);
+  font-size: var(--size-heading);
+  font-weight: var(--weight-heading);
+  letter-spacing: var(--track-heading);
+  color: var(--text-primary);
+  line-height: var(--lh-heading);
+}
+
+/* ── Marquee ── */
+#clients .clients-marquee {
+  overflow: hidden;
+  /* Logos dissolve at the frame edges instead of hard-cutting */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  opacity: 0;
+  transition: opacity 1s var(--ease-out) 0.2s;
+}
+
+#clients.is-visible .clients-marquee {
+  opacity: 1;
+}
+
+#clients .clients-track {
+  display: flex;
+  width: max-content;
+  animation: clients-drift var(--marquee-duration, 44s) linear infinite;
+}
+
+/* Reading direction sets the drift direction */
+html[dir="rtl"] #clients .clients-track {
+  animation-name: clients-drift-rtl;
+}
+
+#clients .clients-marquee:hover .clients-track {
+  animation-play-state: paused;
+}
+
+@keyframes clients-drift {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes clients-drift-rtl {
+  to { transform: translateX(50%); }
+}
+
+/* Two identical groups make the loop seamless */
+#clients .clients-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(56px, 8vw, 128px);
+  padding-inline-end: clamp(56px, 8vw, 128px);
+}
+
+/* ── Individual logo — monochrome, normalized height ── */
+#clients .client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#clients .client-logo img {
+  display: block;
+  height: clamp(26px, 3vw, 38px);
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(2);
+  opacity: 0.55;
+  transition: opacity 0.35s ease;
+  cursor: default;
+}
+
+#clients .client-logo:hover img {
+  opacity: 1;
+}
+
+/* ── Visible state ── */
+#clients.is-visible .clients-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  #clients .client-logo img {
+    height: 22px;
+    max-width: 96px;
+  }
+
+  #clients .clients-group {
+    gap: 44px;
+    padding-inline-end: 44px;
+  }
+}
+
+/* ── Reduced motion — static, wrapped, no drift ── */
+@media (prefers-reduced-motion: reduce) {
+  #clients .clients-header,
+  #clients .clients-marquee {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  #clients .clients-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0 var(--gutter);
+  }
+
+  #clients .clients-track {
+    animation: none;
+    width: 100%;
+  }
+
+  #clients .clients-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 36px;
+    padding-inline-end: 0;
+  }
+
+  /* The duplicate group exists only for the seamless loop */
+  #clients .clients-group[aria-hidden="true"] {
+    display: none;
+  }
+}

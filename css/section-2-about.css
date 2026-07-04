@@ -11,7 +11,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: clamp(80px, 12vw, 160px) var(--gutter);
+  padding: var(--section-pad) var(--gutter);
 }
 
 /* Edge warmth bleed */

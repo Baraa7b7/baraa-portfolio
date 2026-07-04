@@ -4,6 +4,7 @@
   --bg-hero:     #0A0A0F;
   --bg-about:    #0D0805;
   --bg-work:     #050810;
+  --bg-numbers:  #08080A;
   --bg-clients:  #0F0F12;
   --bg-contact:  #120A00;
 
@@ -45,6 +46,8 @@
   /* Spacing */
   --gutter:      clamp(24px, 6vw, 120px);
   --chapter-gap: clamp(80px, 12vw, 160px);
+  /* One vertical rhythm for every section's block padding */
+  --section-pad: clamp(88px, 14vh, 176px);
 
   /* Fonts — Latin face first, Arabic face as script fallback.
      Space Grotesk / Inter carry no Arabic glyphs, so Arabic text
