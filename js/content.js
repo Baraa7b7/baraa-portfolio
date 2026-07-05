@@ -9,6 +9,8 @@ export const CONTACT = {
   whatsappDisplay: '+966 50 515 4962',
   instagram: 'https://www.instagram.com/baraa_abdul_wahab/',
   instagramHandle: '@baraa_abdul_wahab',
+  imdb: 'https://www.imdb.com/name/nm16010261/',
+  imdbDisplay: 'imdb.com/name/nm16010261',
 };
 
 const ROLE = {

@@ -40,7 +40,7 @@ export const translations = {
     numbers: {
       ariaLabel: 'الأرقام',
       label: '٠٤ — الأرقام',
-      heading: 'استعراض القوة',
+      heading: 'أرقام من الميدان',
       stats: {
         years: 'سنوات في الميدان',
         productions: 'إنتاجًا وحملة تجارية',
@@ -60,6 +60,7 @@ export const translations = {
       labels: {
         whatsapp: 'واتساب',
         email: 'البريد',
+        imdb: 'IMDb',
         instagram: 'إنستغرام',
       },
     },
@@ -111,10 +112,11 @@ export const translations = {
     contact: {
       ariaLabel: 'Contact',
       label: '06 — Contact',
-      tagline: 'The next frame — yours',
+      tagline: 'The next frame is yours',
       labels: {
         whatsapp: 'WhatsApp',
         email: 'Email',
+        imdb: 'IMDb',
         instagram: 'Instagram',
       },
     },

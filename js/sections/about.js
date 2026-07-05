@@ -6,7 +6,7 @@
 // The CSS is-visible path stays as the no-GSAP / reduced-motion fallback.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { onLocaleChange } from '../i18n.js';
+import { onLocaleChange, t } from '../i18n.js';
 
 export function initAbout() {
   const section = document.getElementById('about');
@@ -58,6 +58,9 @@ export function initAbout() {
       }
       if (!window.SplitType || !heading) return;
 
+      // revert() restores the HTML captured at the previous split — which is
+      // the previous locale's text. Re-apply the current translation on top.
+      heading.textContent = t('about.heading');
       split = new SplitType(heading, { types: 'words' });
       headingTween = gsap.from(split.words, {
         opacity: 0,

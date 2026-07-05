@@ -29,7 +29,9 @@
 }
 
 /* ── Aspect-ratio frame ──
-   Covers viewport at 2816:1536. Centered via top/left + translate.
+   Covers viewport at the source image's ratio: 2816:1536 desktop,
+   1536:2752 for the portrait mobile sources (matches the <picture>
+   breakpoint at 768px). Centered via top/left + translate.
    JS writes inline transform during push-in and shake (overrides CSS base).
    On breathing: inline style cleared, CSS animation takes over fully. ── */
 #intro .intro-frame {
@@ -42,6 +44,12 @@
   transform: translate(-50%, -50%);
   overflow: hidden;
   will-change: transform, filter;
+}
+
+@media (max-width: 768px) {
+  #intro .intro-frame {
+    aspect-ratio: 1536 / 2752;
+  }
 }
 
 /* ── Lamp-on: brightness overshoot → dip → settle ── */
