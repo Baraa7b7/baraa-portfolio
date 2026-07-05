@@ -61,7 +61,12 @@
   filter: brightness(1);
 }
 
-/* ── Background image ── */
+/* ── Background image ──
+   The <picture> only routes desktop/mobile sources — the img does the layout */
+#intro .intro-picture {
+  display: contents;
+}
+
 #intro .intro-img {
   display: block;
   width: 100%;

@@ -21,9 +21,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@400;500;700&display=swap">
 
-  <!-- Both intro locale images preloaded so the language switch never flashes -->
-  <link rel="preload" href="images/intro/intro-bg-ar.webp" as="image" type="image/webp">
-  <link rel="preload" href="images/intro/intro-bg-en.webp" as="image" type="image/webp">
+  <!-- Both intro locale images preloaded so the language switch never flashes;
+       media-scoped so each device only fetches its own pair -->
+  <link rel="preload" href="images/intro/intro-bg-ar.webp" as="image" type="image/webp" media="(min-width: 769px)">
+  <link rel="preload" href="images/intro/intro-bg-en.webp" as="image" type="image/webp" media="(min-width: 769px)">
+  <link rel="preload" href="images/intro/intro-bg-ar-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
+  <link rel="preload" href="images/intro/intro-bg-en-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/tokens.css">
@@ -65,13 +68,20 @@
   <section id="intro" aria-label="مقدمة" data-i18n-attr="aria-label:intro.ariaLabel">
     <div class="intro-black" aria-hidden="true"></div>
     <div class="intro-frame" aria-hidden="true">
-      <img
-        class="intro-img"
-        src="images/intro/intro-bg-ar.webp"
-        alt="براء عبدالوهاب — استشاري تقني ميداني"
-        data-i18n-attr="alt:intro.imgAlt"
-        draggable="false"
-      >
+      <picture class="intro-picture">
+        <source
+          class="intro-source"
+          media="(max-width: 768px)"
+          srcset="images/intro/intro-bg-ar-mobile.webp"
+        >
+        <img
+          class="intro-img"
+          src="images/intro/intro-bg-ar.webp"
+          alt="براء عبدالوهاب — استشاري تقني ميداني"
+          data-i18n-attr="alt:intro.imgAlt"
+          draggable="false"
+        >
+      </picture>
     </div>
   </section>
 

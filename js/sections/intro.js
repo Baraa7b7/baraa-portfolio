@@ -12,11 +12,19 @@
 
 import { getLocale, onLocaleChange } from '../i18n.js';
 
-// Locale-specific intro backgrounds; both are preloaded from index.html so
-// the swap during a language switch never shows a loading flash.
+// Locale-specific intro backgrounds; the device's pair is preloaded from
+// index.html so the swap during a language switch never shows a loading
+// flash. The <picture> in index.html picks desktop vs mobile — JS only
+// swaps the locale on both sources.
 const INTRO_IMAGES = {
-  ar: 'images/intro/intro-bg-ar.webp',
-  en: 'images/intro/intro-bg-en.webp',
+  ar: {
+    desktop: 'images/intro/intro-bg-ar.webp',
+    mobile: 'images/intro/intro-bg-ar-mobile.webp',
+  },
+  en: {
+    desktop: 'images/intro/intro-bg-en.webp',
+    mobile: 'images/intro/intro-bg-en-mobile.webp',
+  },
 };
 
 // ── Easing functions ──────────────────────────────────────────────────────
@@ -178,14 +186,21 @@ export function initIntro() {
 
   // Locale-driven background. The swap fires at the midpoint of the language
   // toggle's cross-fade (lang-toggle.css fades .intro-img alongside the text),
-  // so the new image appears with the same subtle dissolve.
+  // so the new image appears with the same subtle dissolve. Desktop/mobile
+  // routing is the <picture>'s job — the browser re-evaluates it on resize.
   const img = section.querySelector('.intro-img');
+  const source = section.querySelector('.intro-source');
   if (img) {
-    const src = INTRO_IMAGES[getLocale()];
-    if (src && img.getAttribute('src') !== src) img.setAttribute('src', src);
-    onLocaleChange((locale) => {
-      if (INTRO_IMAGES[locale]) img.setAttribute('src', INTRO_IMAGES[locale]);
-    });
+    const setLocaleImages = (locale) => {
+      const images = INTRO_IMAGES[locale];
+      if (!images) return;
+      if (img.getAttribute('src') !== images.desktop) img.setAttribute('src', images.desktop);
+      if (source && source.getAttribute('srcset') !== images.mobile) {
+        source.setAttribute('srcset', images.mobile);
+      }
+    };
+    setLocaleImages(getLocale());
+    onLocaleChange(setLocaleImages);
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
