@@ -109,11 +109,13 @@
   flex-shrink: 0;
 }
 
-/* ── Right: Portrait column ── */
+/* ── Right: Gear column — Trinity + Ronin side by side ── */
 #about .about-visual {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: stretch;
+  gap: clamp(16px, 2.5vw, 28px);
   opacity: 0;
   transform: translateY(36px);
   transition: opacity 1s var(--ease-out) 0.15s, transform 1s var(--ease-out) 0.15s;
@@ -121,7 +123,9 @@
 
 #about .about-portrait-wrap {
   position: relative;
-  width: min(100%, 420px);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 300px;
   aspect-ratio: 3 / 4;
 }
 
@@ -133,6 +137,12 @@
   display: block;
   /* Warm duotone tint overlay via mix-blend */
   filter: brightness(0.88) sepia(0.18) saturate(1.1);
+}
+
+/* Transparent cutouts (Ronin) — show the whole rig, never crop */
+#about .about-portrait--contain {
+  object-fit: contain;
+  object-position: center;
 }
 
 /* Shadow lamp effect beneath portrait */
@@ -177,11 +187,7 @@
 
   #about .about-visual {
     order: -1;
-  }
-
-  #about .about-portrait-wrap {
-    width: min(100%, 300px);
-    aspect-ratio: 3 / 4;
+    width: min(100%, 440px);
     margin: 0 auto;
   }
 

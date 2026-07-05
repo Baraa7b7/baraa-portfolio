@@ -13,24 +13,25 @@ export const translations = {
   ar: {
     meta: {
       title: 'براء عبدالوهاب — بين الثبات والحركة',
-      description: 'براء عبدالوهاب — استشاري تقني ميداني ومتخصص تثبيت الكاميرا (DJI Ronin, ARRI Trinity).',
+      description: 'براء عبدالوهاب — متخصص كاميرا وتثبيت | DJI Ronin & ARRI Trinity.',
     },
     langToggle: {
       ariaLabel: 'تبديل اللغة',
     },
     intro: {
       ariaLabel: 'مقدمة',
-      imgAlt: 'براء عبدالوهاب — استشاري تقني ميداني',
+      imgAlt: 'براء عبدالوهاب — متخصص كاميرا وتثبيت',
     },
     about: {
       ariaLabel: 'عن براء',
       label: '٠٢ — نبذة',
-      heading: 'استشاري تقني ميداني\nومتخصص تثبيت الكاميرا',
+      heading: 'متخصص كاميرا وتثبيت | DJI Ronin & ARRI Trinity',
       body: 'أعمل في قلب الإنتاج — حيث تلتقي الكاميرا باللحظة. متخصص في أنظمة تثبيت الكاميرا DJI Ronin وARRI Trinity، واستشاري تقني ميداني في المشاريع التلفزيونية الكبرى والإعلانات التجارية.',
       credit1: 'Arabs Got Talent S7 — MBC',
       credit2: 'Boulevard Al-Mawaheb — MBC',
       credit3: 'Netflix · Pepsi · Toyota · Maserati',
       portraitAlt: 'براء عبدالوهاب مع معدات ARRI Trinity',
+      roninAlt: 'نظام DJI Ronin 2 مع كاميرا سينمائية',
     },
     work: {
       ariaLabel: 'الأعمال',
@@ -69,24 +70,25 @@ export const translations = {
   en: {
     meta: {
       title: 'Baraa Abdulwahab — Between Stillness and Motion',
-      description: 'Baraa Abdulwahab — On-Set Technical Consultant & Camera Stabilization Specialist (DJI Ronin, ARRI Trinity).',
+      description: 'Baraa Abdulwahab — Camera & Stabilization Specialist | DJI Ronin & ARRI Trinity.',
     },
     langToggle: {
       ariaLabel: 'Switch language',
     },
     intro: {
       ariaLabel: 'Introduction',
-      imgAlt: 'Baraa Abdulwahab — On-Set Technical Consultant',
+      imgAlt: 'Baraa Abdulwahab — Camera & Stabilization Specialist',
     },
     about: {
       ariaLabel: 'About Baraa',
       label: '02 — About',
-      heading: 'On-Set Technical Consultant\n& Camera Stabilization Specialist',
+      heading: 'Camera & Stabilization Specialist | DJI Ronin & ARRI Trinity',
       body: 'I work at the heart of production — where the camera meets the moment. A specialist in DJI Ronin and ARRI Trinity camera stabilization systems, and an on-set technical consultant for major television productions and commercial campaigns.',
       credit1: 'Arabs Got Talent S7 — MBC',
       credit2: 'Boulevard Al-Mawaheb — MBC',
       credit3: 'Netflix · Pepsi · Toyota · Maserati',
       portraitAlt: 'Baraa Abdulwahab with the ARRI Trinity rig',
+      roninAlt: 'DJI Ronin 2 rig with a cinema camera',
     },
     work: {
       ariaLabel: 'Work',

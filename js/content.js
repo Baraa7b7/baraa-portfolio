@@ -15,8 +15,8 @@ export const CONTACT = {
 
 const ROLE = {
   stabilization: {
-    ar: 'متخصص تثبيت الكاميرا',
-    en: 'Camera Stabilization Specialist',
+    ar: 'متخصص كاميرا وتثبيت',
+    en: 'Camera & Stabilization Specialist',
   },
   consultant: {
     ar: 'استشاري تقني ميداني',
